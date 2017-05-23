@@ -1,6 +1,33 @@
+
+body {
+	font-family: 'Istok Web', sans-serif;
+	font-size: 14px;
+	background: url('../images/zigzagwool.png');
+	color: #eeeeee;
+} 
+
+h1, h2 {  
+	font-family: 'Barrio', cursive;
+	color: #eeeeee;
+}
+
+h1 { 
+	font-size: 50px;
+ }
+
+h2 {
+
+	font-size: 24px;
+}
+
+.header {
+	margin: 20px auto; 
+}
+
 .gamecontainer {
 	width: 1000px;
 	margin: 0 auto;
+
 }
 
 .button {
@@ -11,4 +38,9 @@
 	width: 825px;
 	display: inline-flex;
 	justify-content: space-between;
+}
+
+.margintpbtm20 {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
