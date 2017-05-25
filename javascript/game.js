@@ -1,7 +1,13 @@
 $(document).ready(function(){
 
-	var userChoice = null;
-	var compNum = null; 
+	var gameobj = { 
+
+		uchoice: null,
+		compNum: null,
+
+	}
+
+	// var compNum = null; 
 	var wins = 0;
 	var losses = 0; 
 	var playerScore = 0; 
@@ -15,7 +21,7 @@ $(document).ready(function(){
 	} 
 
 	function gameStart() {
-		compNum = getRandomInt(19, 120);
+		gameobj.compNum = getRandomInt(19, 120);
 		gemValuesSet();
 	}
 
@@ -23,17 +29,14 @@ $(document).ready(function(){
 
 	function gemValuesSet() {
 
-		var x = 13 
-		console.log( gemValuesLimit );
-		
+		var x = 12; 
 		for ( var i = 0 ; i < 4; i++ ) {
 			x -= 1;
 			gemValues[i] = gemValuesLimit[ getRandomInt ( 1, x ) ];
 			
-			/* method to reduce duplicate gem values 
-			
-			gemValuesLimit.splice($.inArray(gemValues[1], gemValuesLimit),1); 
+			gemValuesLimit.splice($.inArray(gemValues[i], gemValuesLimit),1); 
 
+			/* method to reduce duplicate gem values 
 			var y = gemValuesLimit.indexOf( gemValues[i] );
 			if (y != -1) {
 				gemValuesLimit.splice(i, 1);
@@ -49,14 +52,15 @@ $(document).ready(function(){
 		gem4 = gemValues[3];
 
 		// to know what gem has what value for testing 
-		console.log( 'Gem 1 = ' + gem1 );
-		console.log( 'Gem 2 = ' + gem2 );
-		console.log( 'Gem 3 = ' + gem3 );
-		console.log( 'Gem 4 = ' + gem4 );
+		//console.log( 'Gem 1 = ' + gem1 );
+		//console.log( 'Gem 2 = ' + gem2 );
+		//console.log( 'Gem 3 = ' + gem3 );
+		//console.log( 'Gem 4 = ' + gem4 );
+		//console.log( gemValuesLimit );
 
 	}
 
-	$( '#compRandNum' ).text( compNum );
+	$( '#compRandNum' ).text( gameobj.compNum );
 	$( '#wins' ).text( wins );
 	$( '#losses' ).text( losses );
 	$( '#playerTotal' ).text( playerScore);
@@ -66,25 +70,25 @@ $(document).ready(function(){
 	$( '#crystal1' ).on('click', function () {
 		playerScore += gem1;
 		$( '#playerTotal' ).text( playerScore );
-		gameState( playerScore, compNum ); 
+		gameState( playerScore, gameobj.compNum ); 
 	}); 
 
 	$('#crystal2').on('click', function () {
 		playerScore += gem2;
 		$( '#playerTotal' ).text( playerScore );
-		gameState( playerScore, compNum );  
+		gameState( playerScore, gameobj.compNum );  
 	}); 	
 
 	$('#crystal3').on('click', function () {
 		playerScore += gem3;
 		$( '#playerTotal' ).text( playerScore );
-		gameState( playerScore, compNum );  
+		gameState( playerScore, gameobj.compNum );  
 	}); 
 
 	$('#crystal4').on('click', function () {
 		playerScore += gem4; 
 		$( '#playerTotal' ).text( playerScore );
-		gameState( playerScore, compNum );
+		gameState( playerScore, gameobj.compNum );
 	});  
 
 
@@ -106,12 +110,15 @@ $(document).ready(function(){
 
 	function gameRefresh () {
 		
+		gemValuesLimit = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 		gameStart();
 		playerScore = 0;
-		$( '#compRandNum' ).text( compNum );
+		$( '#compRandNum' ).text( gameobj.compNum );
 		$( '#playerTotal' ).text( playerScore);
-		console.log(compNum);
+		
+		console.log(gameobj.compNum);
 		console.log(gemValues);
+		console.log(gemValuesLimit);
 	}
 
 }); 
