@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
+	// game object declared with all variables and functions  
 	var gameobj = { 
 
-		uchoice: null,
 		compNum: null,
 		wins: 0, 
 		losses: 0, 
@@ -80,10 +80,7 @@ $(document).ready(function(){
 
 	}
 
-	
 	gameobj.gameStart(); 
-
-
 
 	// adding playerscore on gem clicks
 	$( '#crystal1' ).on('click', function () {
