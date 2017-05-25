@@ -9,113 +9,106 @@ $(document).ready(function(){
 		playerScore: 0,
 		gemValues: [], 
 		gemValuesLimit: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+		gem1: null, 
+		gem2: null, 
+		gem3: null, 
+		gem4: null,
+
+		// random number function 
 		getRandomInt: function (min, max) {
 	  		return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
-		}, 
-	}
+		},
 
+		// Initializes game and sets up values on screen 
+		gameStart: function () {
+			this.compNum = this.getRandomInt(19, 120);
+			this.gemValuesSet();
+			$( '#compRandNum' ).text( this.compNum );
+			$( '#wins' ).text( this.wins );
+			$( '#losses' ).text( this.losses );
+			$( '#playerTotal' ).text( this.playerScore);
+		},
 
-	var gem1 = null, gem2 = null; gem3 = null; gem4 = null;
+		// assigns valies to gems 
+		gemValuesSet: function () {
 
-	/*
-	function getRandomInt(min, max) {
-	  return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
-	} 
-	*/
+			var x = 12; 
+			for ( var i = 0 ; i < 4; i++ ) {
+				
+				x -= 1;
+				this.gemValues[i] = this.gemValuesLimit[ this.getRandomInt ( 1, x ) ];
+				
+				//avoids duplicate gem values 
+				this.gemValuesLimit.splice($.inArray(this.gemValues[i], this.gemValuesLimit),1); 
 
-	function gameStart() {
-		gameobj.compNum = gameobj.getRandomInt(19, 120);
-		gemValuesSet();
-	}
+			} 
 
-	gameStart(); 
+			// assigns value to each gem using array 
+			this.gem1 = this.gemValues[0];
+			this.gem2 = this.gemValues[1];
+			this.gem3 = this.gemValues[2];
+			this.gem4 = this.gemValues[3];
 
-	function gemValuesSet() {
+		},	
 
-		var x = 12; 
-		for ( var i = 0 ; i < 4; i++ ) {
-			x -= 1;
-			gameobj.gemValues[i] = gameobj.gemValuesLimit[ getRandomInt ( 1, x ) ];
+		gameState: function (player , computer) { 
+			if (player === computer ) {
+				this.wins++; 
+				$( '#wins' ).text( this.wins );
+				this.gameRefresh();	
 			
-			gameobj.gemValuesLimit.splice($.inArray(gameobj.gemValues[i], gameobj.gemValuesLimit),1); 
+			} else if ( player > computer ) { 
+				
+				this.losses++;
+				$( '#losses' ).text( this.losses );
+				this.gameRefresh();
+			}
+		},
 
-		} 
-
-		// assigning value to each gem 
-		gem1 = gameobj.gemValues[0];
-		gem2 = gameobj.gemValues[1];
-		gem3 = gameobj.gemValues[2];
-		gem4 = gameobj.gemValues[3];
-
-		// to know what gem has what value for testing 
-		//console.log( 'Gem 1 = ' + gem1 );
-		//console.log( 'Gem 2 = ' + gem2 );
-		//console.log( 'Gem 3 = ' + gem3 );
-		//console.log( 'Gem 4 = ' + gem4 );
-		//console.log( gemValuesLimit );
+		gameRefresh: function () {
+		
+			this.gemValuesLimit = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+			this.gameStart();
+			this.playerScore = 0;
+			$( '#compRandNum' ).text( this.compNum );
+			$( '#playerTotal' ).text( this.playerScore);
+			
+			console.log(this.compNum);
+			console.log(this.gemValues);
+			console.log(this.gemValuesLimit);
+		},
 
 	}
 
-	$( '#compRandNum' ).text( gameobj.compNum );
-	$( '#wins' ).text( gameobj.wins );
-	$( '#losses' ).text( gameobj.losses );
-	$( '#playerTotal' ).text( gameobj.playerScore);
+	
+	gameobj.gameStart(); 
+
 
 
 	// adding playerscore on gem clicks
 	$( '#crystal1' ).on('click', function () {
-		gameobj.playerScore += gem1;
+		gameobj.playerScore += gameobj.gem1;
 		$( '#playerTotal' ).text( gameobj.playerScore );
-		gameState( gameobj.playerScore, gameobj.compNum ); 
+		gameobj.gameState( gameobj.playerScore, gameobj.compNum ); 
 	}); 
 
 	$('#crystal2').on('click', function () {
-		gameobj.playerScore += gem2;
+		gameobj.playerScore += gameobj.gem2;
 		$( '#playerTotal' ).text( gameobj.playerScore );
-		gameState( gameobj.playerScore, gameobj.compNum );  
+		gameobj.gameState( gameobj.playerScore, gameobj.compNum );  
 	}); 	
 
 	$('#crystal3').on('click', function () {
-		gameobj.playerScore += gem3;
+		gameobj.playerScore += gameobj.gem3;
 		$( '#playerTotal' ).text( gameobj.playerScore );
-		gameState( gameobj.playerScore, gameobj.compNum );  
+		gameobj.gameState( gameobj.playerScore, gameobj.compNum );  
 	}); 
 
 	$('#crystal4').on('click', function () {
-		gameobj.playerScore += gem4; 
+		gameobj.playerScore += gameobj.gem4; 
 		$( '#playerTotal' ).text( gameobj.playerScore );
-		gameState( gameobj.playerScore, gameobj.compNum );
+		gameobj.gameState( gameobj.playerScore, gameobj.compNum );
 	});  
-
-
-	function gameState (player , computer) { 
-
-		if (player === computer ) {
-			gameobj.wins++; 
-			$( '#wins' ).text( gameobj.wins );
-			gameRefresh();	
-		
-		} else if ( player > computer ) { 
-			
-			gameobj.losses++;
-			$( '#losses' ).text( gameobj.losses );
-			gameRefresh();
-		}
-
-	}
-
-	function gameRefresh () {
-		
-		gameobj.gemValuesLimit = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-		gameStart();
-		gameobj.playerScore = 0;
-		$( '#compRandNum' ).text( gameobj.compNum );
-		$( '#playerTotal' ).text( gameobj.playerScore);
-		
-		console.log(gameobj.compNum);
-		console.log(gameobj.gemValues);
-		console.log(gameobj.gemValuesLimit);
-	}
 
 }); 
 
