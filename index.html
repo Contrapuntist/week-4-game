@@ -9,40 +9,55 @@
 	</head>
 	<body>	
 		<div class="gamecontainer">
+			
 			<div class="header">
 				<h1>Sugar Skull Crystal Game</h1>
 			</div>	
+			
+			<div class="directions">
+				<h2>Can you match the computer's score?</h2> 
+				<p>At the start of each game, the computer generates a random number between 21 and 120. In addition, each sugar skull crystal has a random number assigned it between 1 and 12 at the start of each game. No skull has a duplicate number. Watch your score to see if you can click on the right combination of skulls to add up and match the computer's number. </p>				
+			</div>	
 
-			<div class="margintpbtm20"> 
-				<h2>Player Score: <span id="playerTotal"></span></h2>
+			<div class="numbercontainer">
+				<div class="scores">
+					<div class="margintpbtm20"> 
+						<h2>Player Score: <span id="playerTotal"></span></h2>
+					</div>
+					<div class="margintpbtm20">
+						<h2>Random Number: <span id="compRandNum"></span></h2>
+					</div>
+				</div>
+				<div class="winloss">
+					<div class="margintpbtm20">
+						<h2>Wins: <span id="wins"></span></h2>
+					</div> 
+					<div class="margintpbtm20">
+						<h2>Loss: <span id="losses"></span></h2>
+					</div>
+				</div>
 			</div>
-			<div class="margintpbtm20">
-				<h2>Random Number: <span id="compRandNum"></span></h2>
-			</div>
-			<div class="margintpbtm20">
-				<p>Wins: <span id="wins"></span></p>
-			</div> 
-			<div class="margintpbtm20">
-				<p>Loss: <span id="losses"></span></p>
-			</div>
+
 			<div class='gemRow'>
-				<div>
+				<div class="button-bg">
 					<img class="button" id="crystal1" src="images/pink_skull.png">
 				</div>
-				<div >
+				<div class="button-bg">
 					<img class="button" id="crystal2" src="images/blue_skull.png">
 				</div>
-				<div>
+				<div class="button-bg">
 					<img class="button" id="crystal3" src="images/brown_skull.png">
 				</div>
-				<div >
+				<div class="button-bg">
 					<img class="button" id="crystal4" src="images/Pinker-Skull.png">
 				</div>				
-			</div>
+			</div> 
+			
 		</div>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   		crossorigin="anonymous"></script>
 		<script type="text/javascript" src="javascript/game.js"></script>
+
 	</body>
 </html>

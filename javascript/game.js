@@ -73,9 +73,9 @@ $(document).ready(function(){
 			$( '#compRandNum' ).text( this.compNum );
 			$( '#playerTotal' ).text( this.playerScore);
 			
-			console.log(this.compNum);
-			console.log(this.gemValues);
-			console.log(this.gemValuesLimit);
+			//console.log(this.compNum);
+			//console.log(this.gemValues);
+			//console.log(this.gemValuesLimit);
 		},
 
 	}

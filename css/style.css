@@ -1,7 +1,10 @@
+* {
+	box-sizing: border-box;
+}
 
 body {
 	font-family: 'Istok Web', sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 	background: url('../images/zigzagwool.png');
 	color: #eeeeee;
 } 
@@ -14,8 +17,13 @@ h1 {
 
 h2 {  
 	font-family: 'Barrio', cursive;
-	color: #eeeeee;
 	font-size: 24px;
+}
+
+.gamecontainer {
+	width: 950px;
+	margin: 50px auto;
+
 }
 
 .header {
@@ -27,20 +35,61 @@ h2 {
 	color: #ff32f1;
 }
 
-.gamecontainer {
-	width: 1000px;
-	margin: 0 auto;
+.directions {
+	margin: 20px auto;
+	color: #87FF32;
+} 
 
+.directions h2 { 
+	padding-top: 10px; 
+	padding-bottom: 10px;
+	color: #87FF32;
+ }
+
+.numbercontainer {
+	display: inline-flex;
+	width: 950px;
+	margin-bottom: 25px;
+} 
+
+.scores, .winloss {
+	width: 475px;
+} 
+
+.scores h2, .winloss h2 {
+	color: #FFEF32;
 }
+
 
 .button {
-	height: 200px;
+	height: 225px;
 }
 
+.button-bg { 
+	height: 235px; 
+	width: 225px;
+	background-color: #333333;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+ } 
+
+.button-bg:hover
+{
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+}
+
+
+
 .gemRow {
-	width: 825px;
+	width: 950px;
 	display: inline-flex;
 	justify-content: space-between; 
+	align-items: center;
 }
 
 .margintpbtm20 {
